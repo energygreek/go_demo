@@ -3,13 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <link rel="styleSheet" type="text/css" href="/css/index.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function post_data() {
+            let data = $('form').serialize();
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                url: '/ajax/index',
+                success :(json, textStatus, xhr) => {
+                    //window.location.href ="/admin/"
+                },
+                error: (xhr, textStatus, errorThrown)=>{
+                    $("#result").text(JSON.stringify(errorThrown));
+                }
+            });
+            return false;
+        }
+    </script>
 </head>
 <body>
-<header>login</header>
-<form id = "form" action="../ajax/index" method="post">
-    <input name="admin_name">
-    <input name="admin_password">
-    <input type="submit" id="submit">
+<div id="login">
+<h1>login</h1>
+<form onsubmit="return post_data();return false;">
+    <div class="title">Name:</div>
+    <input name="admin_name"  />
+    <div class="title">Password: </div>
+    <input name="admin_password" type="password" />
+    <input id = "submit" type="submit" value="登录" />
 </form>
+</div>
+
 </body>
 </html>

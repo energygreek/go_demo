@@ -4,7 +4,6 @@ import (
 	"net/http"
 )
 
-
 func main(){
 	http.Handle("/css/", http.FileServer(http.Dir("template")))
 	http.Handle("/js/", http.FileServer(http.Dir("template")))
